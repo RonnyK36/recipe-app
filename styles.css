@@ -82,5 +82,36 @@ header button {
     margin: 1rem;
     border-radius: 5px;
     padding: 10px;
+    overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.meal-header {
+    position: relative;
+}
+
+.meal-header .random {
+    position: absolute;
+    top: 10px;
+    background: white;
+    padding: 0.25rem 0.5rem;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.meal-header img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.meal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.meal-body h4 {
+    margin: 0;
 }
