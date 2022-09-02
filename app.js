@@ -1,4 +1,6 @@
 const mealsEl = document.getElementById('meals')
+const favMealsEl = document.querySelector(".fav-meals")
+
 
 getRandomMeal()
 fetchFavMeals()
@@ -56,6 +58,9 @@ function displayMeal(mealData, random = false) {
             addMealToLocalStorage(mealData.idMeal)
             btnEl.classList.add('active')
         }
+
+
+        fetchFavMeals()
     })
 
 
@@ -84,6 +89,8 @@ function getMealFromLocalStorage() {
 
 // Get Fav Meals
 async function fetchFavMeals() {
+    // Clean Favorite Meals first
+    favMealsEl.innerHTML = ''
     const mealIds = getMealFromLocalStorage()
 
     for (const mealId of mealIds) {
@@ -96,15 +103,18 @@ async function fetchFavMeals() {
 }
 
 function addMealToFav(mealData) {
-    const favMealsEl = document.querySelector(".fav-meals")
     const favMealLi = document.createElement('li')
 
     favMealLi.innerHTML = `
-    <li>
-        <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
-        <span>${mealData.strMeal}</span>
-    </li>           
+    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+    <span>${mealData.strMeal}</span>
+    <button class='btn'><i class="fa-solid fa-circle-xmark"></i></button>         
     `
+    const delBtn = favMealLi.querySelector('.btn')
+    delBtn.addEventListener('click', () => {
+        removeMealFromLocalStorage(mealData.idMeal)
+        fetchFavMeals()
+    })
 
     favMealsEl.appendChild(favMealLi)
 
