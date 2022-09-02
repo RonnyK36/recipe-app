@@ -77,3 +77,10 @@ header button {
 .fav-meals li span {
     font-size: 0.8rem;
 }
+
+.meals {
+    margin: 1rem;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
