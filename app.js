@@ -3,6 +3,7 @@ const searchBtn = document.getElementById('search')
 const mealPopupEl = document.getElementById('meal-popup')
 const popupCloseBtn = document.getElementById('close-popup')
 const searchTerm = document.getElementById('search-term')
+const mealInfoEl = document.getElementById('meal-info')
 const favMealsEl = document.querySelector(".fav-meals")
 
 
@@ -55,6 +56,12 @@ function displayMeal(mealData, random = false) {
         <button class="fav-btn"><i class="fa-solid fa-heart active"></i></button>
     </div>
     `
+    // display popup on click
+
+    meal.addEventListener("click", () => {
+        mealInfoEl.innerHTML = ''
+        displayMealInfo(mealData)
+    })
 
     // Toggle Fav Btn on click and add to favorites
     const btnEl = meal.querySelector('.meal-body .fav-btn')
@@ -142,3 +149,26 @@ searchBtn.addEventListener('click', async () => {
 popupCloseBtn.addEventListener('click', () => {
     mealPopupEl.classList.add('hidden')
 })
+
+
+function displayMealInfo(mealData) {
+    const mealEl = document.createElement("div")
+
+    mealEl.innerHTML = `
+    <h1>${mealData.strMeal}</h1>
+    <img src="${mealData.strMealThumb}" alt="">
+    <p>${mealData.strInstructions}</p>
+    <ul>
+        <li>Ing 1 - measure</li>
+        <li>Ing 2 - measure</li>
+        <li>Ing 3 -measure</li>
+        <li>Ing 4 - measure</li>
+    </ul>
+    `
+    mealInfoEl.appendChild(mealEl)
+
+
+    // show the popup
+    mealPopupEl.classList.remove('hidden')
+
+}

@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: cursive;
     margin: 0;
 }
 
@@ -61,6 +61,7 @@ header button {
     display: flex;
     padding: 0;
     overflow: auto;
+    height: 140px;
 }
 
 .fav-meals li {
@@ -171,6 +172,10 @@ header button {
     visibility: hidden;
 }
 
+.meal-info img {
+    width: 100%;
+}
+
 .meal-details {
     position: relative;
     background-color: white;
@@ -178,6 +183,8 @@ header button {
     max-width: 800px;
     border-radius: 8px;
     padding: 0.5rem 1.5rem;
+    height: 85%;
+    overflow: auto;
 }
 
 .meal-details h1 {
