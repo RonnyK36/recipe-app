@@ -130,6 +130,10 @@ function addMealToFav(mealData) {
         removeMealFromLocalStorage(mealData.idMeal)
         fetchFavMeals()
     })
+    favMealLi.addEventListener("click", () => {
+        mealInfoEl.innerHTML = ''
+        displayMealInfo(mealData)
+    })
 
     favMealsEl.appendChild(favMealLi)
 
@@ -154,17 +158,28 @@ popupCloseBtn.addEventListener('click', () => {
 function displayMealInfo(mealData) {
     const mealEl = document.createElement("div")
 
+    const ingredients = []
+    for (let i = 1; i < 20; i++) {
+
+        if (mealData['strIngredient' + i]) {
+            ingredients.push(`${mealData['strIngredient' + i]} - ${mealData['strMeasure' + i]}`)
+        } else {
+            break
+        }
+
+    }
+
+
     mealEl.innerHTML = `
-    <h1>${mealData.strMeal}</h1>
-    <img src="${mealData.strMealThumb}" alt="">
-    <p>${mealData.strInstructions}</p>
-    <ul>
-        <li>Ing 1 - measure</li>
-        <li>Ing 2 - measure</li>
-        <li>Ing 3 -measure</li>
-        <li>Ing 4 - measure</li>
-    </ul>
-    `
+                <h1> ${mealData.strMeal}</h1>
+            <img src="${mealData.strMealThumb}" alt="">
+                <p>${mealData.strInstructions}</p>
+                <br>
+                <h3>Ingredients:</h3>
+                <ul>
+                    ${ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                </ul>
+                `
     mealInfoEl.appendChild(mealEl)
 
 
